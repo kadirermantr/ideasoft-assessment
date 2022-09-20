@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
