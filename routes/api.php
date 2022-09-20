@@ -25,4 +25,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('customer', CustomerController::class);
 Route::resource('product', ProductController::class);
 Route::resource('order', OrderController::class);
-Route::resource('discount', DiscountController::class);
