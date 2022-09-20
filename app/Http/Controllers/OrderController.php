@@ -30,7 +30,7 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         $totalAmount = 0;
-        $productPrices = [];
+        $products = [];
 
         foreach ($request->items as $item) {
             $product = Product::find($item['productId']);
@@ -47,7 +47,10 @@ class OrderController extends Controller
             ]);
 
             if ($product->category == 1 && $item['quantity'] >= 2) {
-                $productPrices[] = $product->price;
+                $products[] = [
+                    'price' => $product->price,
+                    'id' => $product->id,
+                ];
             }
 
             if ($product->category == 2 && $item['quantity'] >= 6) {
@@ -59,11 +62,13 @@ class OrderController extends Controller
             $totalAmount = $totalAmount + ($item['quantity'] * $product->price);
         }
 
+        if ($products) {
+            $totalAmount = $totalAmount - (min($products)['price'] * 0.20);
+        }
+
         if ($totalAmount >= 1000) {
             $totalAmount = $totalAmount - ($totalAmount * 0.10);
         }
-
-        dd(min($productPrices));
 
         $order = Order::create([
             'customerId' => $request->customerId,
