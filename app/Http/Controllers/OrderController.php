@@ -76,18 +76,18 @@ class OrderController extends Controller
             'total' => $totalAmount,
         ]);
 
-        return $this->show($order->id);
+        return $this->show($order);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Order $order
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        $order = Order::findOrFail($id);
+        $order = Order::findOrFail($order->id);
 
         return response()->json($order);
     }
@@ -95,14 +95,12 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Order $order
      * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        $order = Order::findOrFail($id);
-
-        $order->destroy($id);
+        $order->destroy($order->id);
 
         return response()->json([
             'message' => 'Order deleted',

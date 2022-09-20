@@ -34,18 +34,18 @@ class CustomerController extends Controller
             'since' => now()->format('Y-m-d'),
         ]);
 
-        return $this->show($customer->id);
+        return $this->show($customer);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Customer $customer
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
+        $customer = Customer::find($customer->id);
 
         return response()->json($customer);
     }
@@ -53,14 +53,12 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Customer $customer
      * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-
-        $customer->destroy($id);
+        $customer->destroy($customer->id);
 
         return response()->json([
             'message' => 'Customer deleted',

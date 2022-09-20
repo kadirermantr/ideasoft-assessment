@@ -28,20 +28,20 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $product = Product::create($request->all());
+        $product = Product::create($request->validated());
 
-        return $this->show($product->id);
+        return $this->show($product);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Product $product
      * @return JsonResponse
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($product->id);
 
         return response()->json($product);
     }
@@ -49,14 +49,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Product $product
      * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($id);
-
-        $product->destroy($id);
+        $product->destroy($product->id);
 
         return response()->json([
             'message' => 'Product deleted',
