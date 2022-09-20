@@ -10,9 +10,9 @@
 
 ## Install
 
-- `cp .env.example .env`
-- `./vendor/bin/sail up -d`
-- `./vendor/bin/sail migrate --seed`
+1. `cp .env.example .env`
+2. `./vendor/bin/sail up -d`
+3. `./vendor/bin/sail migrate --seed`
 
 ## Example Data
 
