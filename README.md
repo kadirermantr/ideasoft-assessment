@@ -25,3 +25,5 @@ With the button below, you can simply import Postman environment and collections
 ---
 
 **Footnote:** Discounts are currently not running dynamically as requested. It might be better.
+
+**Worksheet:** You may look  my scratch paper [here](https://github.com/kadirermantr/se-take-home-assessment/blob/main/resources/images/worksheet.jpg)
