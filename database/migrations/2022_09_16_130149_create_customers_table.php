@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('revenue');
+            $table->float('revenue')->default(0);
             $table->date('since');
         });
     }

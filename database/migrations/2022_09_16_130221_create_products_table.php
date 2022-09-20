@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('category', [1, 2]);
-            $table->float('price');
-            $table->integer('stock');
+            $table->float('price')->default(0);
+            $table->integer('stock')->default(0);
         });
     }
 

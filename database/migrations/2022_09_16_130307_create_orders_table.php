@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Customer::class, 'customerId');
             $table->json('items');
-            $table->float('total');
+            $table->float('total')->default(0);
         });
     }
 
