@@ -87,7 +87,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order = Order::findOrFail($order->id);
+        $order = Order::find($order->id);
 
         return response()->json($order);
     }
