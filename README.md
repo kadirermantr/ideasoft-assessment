@@ -12,7 +12,7 @@
 1. `cp .env.example .env`
 2. `composer install`
 3. `./vendor/bin/sail up -d`
-4. `./vendor/bin/sail migrate --seed`
+4. `./vendor/bin/sail artisan migrate --seed`
 
 ## Example Data
 
