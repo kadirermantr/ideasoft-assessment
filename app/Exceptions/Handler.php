@@ -54,19 +54,12 @@ class Handler extends ExceptionHandler
     /**
      * @param $request
      * @param Throwable $e
-     * @return Response|JsonResponse
+     * @return JsonResponse
      * @throws Throwable
      */
-    public function render($request, Throwable $e): Response|JsonResponse
+    public function render($request, Throwable $e): JsonResponse
     {
         if ($request->is('api/*')) {
-            if ($e instanceof NotFoundHttpException) {
-                return response()->json(
-                    ['message' => 'Resource not found.'],
-                    404
-                );
-            }
-
             return response()->json([
                 'data' => null,
                 'message' => $e->getMessage(),
