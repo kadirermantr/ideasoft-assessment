@@ -1,0 +1,610 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/customer:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: 'Türker Jöntürk'
+                    revenue: 492.12
+                    since: '2014-06-28'
+                  -
+                    id: 2
+                    name: 'Kaptan Devopuz'
+                    revenue: 1505.95
+                    since: '2015-01-15'
+                  -
+                    id: 3
+                    name: 'İsa Sonuyumaz'
+                    revenue: 0
+                    since: '2016-02-11'
+                  -
+                    id: 4
+                    name: 'Türker Jöntürk'
+                    revenue: 492.12
+                    since: '2022-09-20'
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: omnis
+                revenue:
+                  type: number
+                  description: ''
+                  example: 1218228.9500511
+              required:
+                - name
+                - revenue
+      security: []
+  '/api/customer/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Türker Jöntürk'
+                  revenue: 492.12
+                  since: '2014-06-28'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Türker Jöntürk'
+                  revenue:
+                    type: number
+                    example: 492.12
+                  since:
+                    type: string
+                    example: '2014-06-28'
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the customer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/product:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
+                    category: '1'
+                    price: 120.75
+                    stock: 10
+                  -
+                    id: 2
+                    name: "Reko Mini Tamir Hassas Tornavida Seti 32'li"
+                    category: '1'
+                    price: 49.5
+                    stock: 9
+                  -
+                    id: 3
+                    name: 'Viko Karre Anahtar - Beyaz'
+                    category: '2'
+                    price: 11.28
+                    stock: 9
+                  -
+                    id: 4
+                    name: 'Legrand Salbei Anahtar, Alüminyum'
+                    category: '2'
+                    price: 22.8
+                    stock: 10
+                  -
+                    id: 5
+                    name: 'Schneider Asfora Beyaz Komütatör'
+                    category: '2'
+                    price: 12.95
+                    stock: 10
+                  -
+                    id: 6
+                    name: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
+                    category: '1'
+                    price: 120.75
+                    stock: 10
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: non
+                category:
+                  type: string
+                  description: ''
+                  example: aut
+                price:
+                  type: number
+                  description: ''
+                  example: 241480.983878
+                stock:
+                  type: number
+                  description: ''
+                  example: 246252878.5699
+              required:
+                - name
+                - category
+                - price
+                - stock
+      security: []
+  '/api/product/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
+                  category: '1'
+                  price: 120.75
+                  stock: 10
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Black&Decker A7062 40 Parça Cırcırlı Tornavida Seti'
+                  category:
+                    type: string
+                    example: '1'
+                  price:
+                    type: number
+                    example: 120.75
+                  stock:
+                    type: integer
+                    example: 10
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the product.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/order:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    customerId: 1
+                    items:
+                      -
+                        total: 112.8
+                        quantity: 10
+                        productId: 3
+                        unitPrice: 11.28
+                    total: 112.8
+                  -
+                    id: 2
+                    customerId: 2
+                    items:
+                      -
+                        total: 99
+                        quantity: 2
+                        productId: 2
+                        unitPrice: 49.5
+                      -
+                        total: 120.75
+                        quantity: 1
+                        productId: 1
+                        unitPrice: 120.75
+                    total: 219.75
+                  -
+                    id: 3
+                    customerId: 3
+                    items:
+                      -
+                        total: 67.68
+                        quantity: 6
+                        productId: 3
+                        unitPrice: 11.28
+                      -
+                        total: 1207.5
+                        quantity: 10
+                        productId: 1
+                        unitPrice: 120.75
+                    total: 1275.18
+                  -
+                    id: 4
+                    customerId: 1
+                    items:
+                      -
+                        quantity: 10
+                        productId: 3
+                      -
+                        quantity: 10
+                        productId: 2
+                    total: 586.62
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                  description: ''
+                  example: sed
+                items:
+                  type: array
+                  description: ''
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: ''
+                        example: molestiae
+                      quantity:
+                        type: number
+                        description: ''
+                        example: 1357.30654
+                    required:
+                      - productId
+                      - quantity
+              required:
+                - customerId
+      security: []
+  '/api/order/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  customerId: 1
+                  items:
+                    -
+                      total: 112.8
+                      quantity: 10
+                      productId: 3
+                      unitPrice: 11.28
+                  total: 112.8
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  customerId:
+                    type: integer
+                    example: 1
+                  items:
+                    type: array
+                    example:
+                      -
+                        total: 112.8
+                        quantity: 10
+                        productId: 3
+                        unitPrice: 11.28
+                    items:
+                      type: object
+                  total:
+                    type: number
+                    example: 112.8
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
