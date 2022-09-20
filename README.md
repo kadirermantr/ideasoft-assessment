@@ -6,13 +6,13 @@
 
 - **Programming language:** PHP
 - **Framework:** Laravel
-- **Database:** MySQL
 
 ## Install
 
 1. `cp .env.example .env`
-2. `./vendor/bin/sail up -d`
-3. `./vendor/bin/sail migrate --seed`
+2. `composer install`
+3. `./vendor/bin/sail up -d`
+4. `./vendor/bin/sail migrate --seed`
 
 ## Example Data
 
