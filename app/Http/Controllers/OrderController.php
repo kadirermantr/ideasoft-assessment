@@ -46,6 +46,7 @@ class OrderController extends Controller
             $product->update([
                 'stock' => $product->stock - 1,
             ]);
+
             if ($product->category == Products::CATEGORY_IDS[1] && $item['quantity'] >= Products::DISCOUNT_QUANTITIES['BUY_5_GET_1']) {
                 $products[] = [
                     'price' => $product->price,
