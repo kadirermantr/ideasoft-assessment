@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Constants\Products;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
@@ -45,16 +46,15 @@ class OrderController extends Controller
             $product->update([
                 'stock' => $product->stock - 1,
             ]);
-
-            if ($product->category == 1 && $item['quantity'] >= 2) {
+            if ($product->category == Products::CATEGORY_IDS[1] && $item['quantity'] >= Products::DISCOUNT_QUANTITIES['BUY_5_GET_1']) {
                 $products[] = [
                     'price' => $product->price,
                     'id' => $product->id,
                 ];
             }
 
-            if ($product->category == 2 && $item['quantity'] >= 6) {
-                $giftCount = floor($item['quantity'] / 6);
+            if ($product->category == Products::CATEGORY_IDS[2] && $item['quantity'] >= Products::DISCOUNT_QUANTITIES['10_PERCENT_OVER_1000']) {
+                $giftCount = floor($item['quantity'] / Products::DISCOUNT_QUANTITIES['10_PERCENT_OVER_1000']);
 
                 $totalAmount = $totalAmount - ($giftCount * $product->price);
             }

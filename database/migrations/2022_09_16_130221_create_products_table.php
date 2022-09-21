@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Constants\ProductCategories;
+use App\Http\Constants\Products;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('category', ProductCategories::IDS);
+            $table->enum('category', Products::CATEGORY_IDS);
             $table->float('price')->default(0);
             $table->integer('stock')->default(0);
         });
