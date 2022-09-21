@@ -30,18 +30,50 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-        $totalAmount = 0;
-        $products = [];
+        if (!$this->checkStock($request->items)) {
+            return response()->json([
+                'message' => 'Product is out of stock.',
+            ]);
+        }
 
-        foreach ($request->items as $item) {
+        $products = $this->giveDiscount($request->items);
+
+        $order = Order::create([
+            'customerId' => $request->customerId,
+            'items' => $products['items'],
+            'total' => $products['total'],
+        ]);
+
+        return $this->show($order);
+    }
+
+    /**
+     * @param array $products
+     * @return bool
+     */
+    private function checkStock(array $products)
+    {
+        foreach ($products as $item) {
             $product = Product::find($item['productId']);
 
             if ($product->stock < 1) {
-                return response()->json([
-                    'message' => 'Product is out of stock.',
-                    'productId' => $product->id,
-                ]);
+                return false;
             }
+        }
+
+        return true;
+    }
+
+    /**
+     * @param array $products
+     * @return array
+     */
+    private function giveDiscount(array $products)
+    {
+        $totalAmount = 0;
+
+        foreach ($products as $item) {
+            $product = Product::find($item['productId']);
 
             $product->update([
                 'stock' => $product->stock - 1,
@@ -57,27 +89,24 @@ class OrderController extends Controller
             if ($product->category == Products::CATEGORY_IDS[2] && $item['quantity'] >= Products::DISCOUNT_QUANTITIES['10_PERCENT_OVER_1000']) {
                 $giftCount = floor($item['quantity'] / Products::DISCOUNT_QUANTITIES['10_PERCENT_OVER_1000']);
 
-                $totalAmount = $totalAmount - ($giftCount * $product->price);
+                $totalAmount -= $giftCount * $product->price;
             }
 
-            $totalAmount = $totalAmount + ($item['quantity'] * $product->price);
+            $totalAmount += $item['quantity'] * $product->price;
         }
 
         if ($products) {
-            $totalAmount = $totalAmount - (min($products)['price'] * 0.20);
+            $totalAmount -= min($products)['price'] * 0.20;
         }
 
         if ($totalAmount >= 1000) {
-            $totalAmount = $totalAmount - ($totalAmount * 0.10);
+            $totalAmount -= $totalAmount * 0.10;
         }
 
-        $order = Order::create([
-            'customerId' => $request->customerId,
-            'items' => $request->items,
+        return [
+            'items' => $products,
             'total' => $totalAmount,
-        ]);
-
-        return $this->show($order);
+        ];
     }
 
     /**
