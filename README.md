@@ -1,4 +1,4 @@
-# Ideasoft Take-Home Assesment
+# Ideasoft Assesment
 
 **Assesment link:** [ideasoft/se-take-home-assessment](https://github.com/ideasoft/se-take-home-assessment)
 
